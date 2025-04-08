@@ -1,4 +1,4 @@
 # Data Analysis Projects
-## Google Data Analytics Professional Certificate - Case Studies
-* Bellabeat Case Study
-* Cyclistic Bike-Share Case Study
+## Capstone Projects
+* Google Data Analytics Professional Certificate - Bellabeat Case Study
+*  Google Data Analytics Professional Certificate - Cyclistic Bike-Share Case Study
