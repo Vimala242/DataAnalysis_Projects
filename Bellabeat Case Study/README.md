@@ -76,6 +76,7 @@ library(skimr)
 library(janitor)
 library(lubridate)
 ```
+![Loading_Libraries](https://github.com/Vimala242/DataAnalysis_Projects/tree/main/Bellabeat%20Case%20Study/load_libraries.jpg)
 #### Importing data files:
 The CSV files were initially opened in Excel, where the time and/or date formatting was adjusted from "custom" to "time" and/or "short date" as needed. Afterward, the files were imported into R Studio, and data frames were created with simplified names for easier reference.
 ```
