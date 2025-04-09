@@ -5,24 +5,24 @@ As a Junior Data Analyst on the Marketing Analysis team at Bellabeat, a company 
 Bellabeat, a high-tech manufacturer of health-focused products for women. Although, a successful small company, they have the potential to become a larger player in the global smart device market.
 Urška Sršen and Sando Mur founded Bellabeat. Sršen used her background as an artist to develop beautifully designed technology that informs and inspires women around the world. Since it was founded in 2013, Bellabeat has grown rapidly and quickly positioned itself as a tech-driven wellness company for women.
 ### Characters and products
-#### Characters
-* **Urška Sršen:** Bellabeat’s cofounder and Chief Creative Officer
-* **Sando Mur:** Mathematician and Bellabeat’s cofounder; key member of the Bellabeat executive team
-* **Bellabeat marketing analytics team:** A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Bellabeat’s marketing strategy. I joined this team six months ago and have been busy learning about Bellabeat’’s mission and business goals — as well as how you, as a junior data analyst, can help Bellabeat achieve them.
+### Characters
+* **Urška Sršen:** Bellabeat’s cofounder and Chief Creative Officer.
+* **Sando Mur:** Mathematician and Bellabeat’s cofounder; key member of the Bellabeat executive team.
+* **Bellabeat marketing analytics team:** A team of data analysts responsible for collecting, analyzing, and reporting data that helps guide Bellabeat’s marketing strategy.
 ### Products
 * **Bellabeat app:** The Bellabeat app provides users with health data related to their activity, sleep, stress,menstrual cycle, and mindfulness habits. This data can help users better understand their current habits and make healthy decisions. The Bellabeat app connects to their line of smart wellness products.
 * **Leaf:** Bellabeat’s classic wellness tracker can be worn as a bracelet, necklace, or clip. The Leaf tracker connects to the Bellabeat app to track activity, sleep, and stress.
 * **Time:** This wellness watch combines the timeless look of a classic timepiece with smart technology to track user activity, sleep, and stress. The Time watch connects to the Bellabeat app to provide you with insights into your daily wellness.
 * **Spring:** This is a water bottle that tracks daily water intake using smart technology to ensure that you are appropriately hydrated throughout the day. The Spring bottle connects to the Bellabeat app to track your hydration levels.
 ## Step 1: Ask
-#### Business Task
-  * **Objective:** Identify trends in how consumers use non-Bellabeat smart devices to apply insights into Bellabeat's marketing strategy.
+### Business Task
+  * **Objective:** Analyze Fitbit data to derive insights that can inform and shape Bellabeat's marketing strategy, with the goal of expanding its presence and establishing itself as a global leader.
   * **Key Stakeholders:**
-      * Urška Sršen - Bellabeat’s cofounder and Chief Creative Officer
-      * Sando Mur - Bellabeat’s cofounder; key member of the Bellabeat executive team
-      * Bellabeat marketing analytics team
+      * **Urška Sršen** - Bellabeat’s cofounder and Chief Creative Officer
+      * **Sando Mur** - Bellabeat’s cofounder; key member of the Bellabeat executive team
+      * **Bellabeat marketing analytics team**
 ## Step 2: Prepare
-#### Dataset used:
+#### Data Source:
 The data for our case study comes from the Fitbit Fitness Tracker dataset, which is hosted on Kaggle and made available through Mobius.
 #### Accessibility and privacy of data:
 Upon reviewing the metadata of the dataset, we can confirm that it is open-source. The creator has released the work to the public domain, relinquishing all rights under copyright law globally, where permitted. This means the dataset can be copied, modified, distributed, and used for commercial purposes without needing permission.
@@ -33,15 +33,15 @@ The dataset consists of 18 CSV files, each containing different types of quantit
 #### Data Integrity and Credibility:
 Given the small sample size (30 users) and the lack of demographic information, there is a potential for sampling bias. It is unclear whether the sample accurately reflects the broader population. Additionally, the dataset is not current and was collected over a relatively short two-month period, which may limit its applicability. Due to these constraints, we will approach the case study with an operational perspective, focusing on the practical insights derived from the available data.
 ## Step 3: Process
-I decided to use R for my analysis because of its accessibility, ability to handle the volume of data I'll be working with, and the convenience it offers in creating data visualizations that can effectively communicate my findings and recommendations to stakeholders.
-#### Setting up my environment by loading the packages:
-I will choose the packages that will help in working on my analysis and open them. Packages to be used for my analysis includes;
+R Studio was chosen for this analysis due to its wide range of packages and powerful data visualization capabilities, which allowed for in-depth exploration of the data.
+#### Environment Setup:
+I will select the packages that are essential for my analysis and load them. The packages to be used for my analysis include:
 * tidyverse
 * here
 * skimr
 * janitor
 * lubridate
-#### Installing the packages,
+#### Installing the packages:
 ```
 install.packages("tidyverse")
 install.packages("here")
@@ -49,7 +49,26 @@ install.packages("skimr")
 install.packages("janitor")
 install.packages("lubridate")
 ```
-#### Loading the libraries,
+install.packages("tidyverse")
+
+Installing package into ‘/cloud/lib/x86_64-pc-linux-gnu-library/4.4’ (as ‘lib’ is unspecified)
+
+install.packages("here")
+
+Installing package into ‘/cloud/lib/x86_64-pc-linux-gnu-library/4.4’ (as ‘lib’ is unspecified)
+
+install.packages("skimr")
+
+Installing package into ‘/cloud/lib/x86_64-pc-linux-gnu-library/4.4’ (as ‘lib’ is unspecified)
+
+install.packages("janitor")
+
+Installing package into ‘/cloud/lib/x86_64-pc-linux-gnu-library/4.4’ (as ‘lib’ is unspecified)
+
+install.packages("lubridate")
+
+Installing package into ‘/cloud/lib/x86_64-pc-linux-gnu-library/4.4’ (as ‘lib’ is unspecified)
+#### Loading the libraries:
 ```
 library(tidyverse)
 library(here)
@@ -57,7 +76,8 @@ library(skimr)
 library(janitor)
 library(lubridate)
 ```
-#### Importing data files,
+#### Importing data files:
+The CSV files were initially opened in Excel, where the time and/or date formatting was adjusted from "custom" to "time" and/or "short date" as needed. Afterward, the files were imported into R Studio, and data frames were created with simplified names for easier reference.
 ```
 daily_activity <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/dailyActivity_merged.csv", header = TRUE)
 daily_steps <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/dailySteps_merged.csv", header = TRUE)
