@@ -200,6 +200,8 @@ n_unique(hourly_intensities$Id)
 n_unique(hourly_steps$Id)
 n_unique(weight$Id)
 ```
+![Unique_users](./unique_users.jpg)
+
 All datasets contain 33 participants each, except for daily_sleep and weight, which have 24 and 8 participants respectively. Due to the limited sample size, I will exclude the weight dataset from the analysis, as it is insufficient for drawing meaningful conclusions or making reliable recommendations.
 
 #### Checking for duplicates
@@ -212,6 +214,8 @@ sum(duplicated(hourly_calories))
 sum(duplicated(hourly_intensities))
 sum(duplicated(hourly_steps))
 ```
+![Verify_duplicate_records](./duplicate_records.jpg)
+
 #### Removing all duplicates and missing values
 To prepare the data for analysis, I will eliminate duplicates and address any missing values.
 ```
@@ -243,6 +247,7 @@ sum(duplicated(hourly_calories))
 sum(duplicated(hourly_intensities))
 sum(duplicated(hourly_steps))
 ```
+![Verify_duplicate_records](./duplicate_records_2.jpg)
 
 #### Cleaning and renaming columns
 I will ensure that column names follow a consistent syntax and format across all datasets, as they will be merged later. All column names will be converted to lowercase for uniformity.
