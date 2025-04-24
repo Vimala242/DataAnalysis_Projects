@@ -76,9 +76,9 @@ library(skimr)
 library(janitor)
 library(lubridate)
 ```
-![Loading_Libraries](https://github.com/Vimala242/DataAnalysis_Projects/tree/main/Bellabeat%20Case%20Study/load_libraries.jpg)
+![Loading_Libraries](./load_libraries.jpg)
 #### Importing data files:
-The CSV files were initially opened in Excel, where the time and/or date formatting was adjusted from "custom" to "time" and/or "short date" as needed. Afterward, the files were imported into R Studio, and data frames were created with simplified names for easier reference.
+Imported the following CSV files into R Studio and data frames were created with simplified names for easier reference.
 ```
 daily_activity <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/dailyActivity_merged.csv", header = TRUE)
 daily_steps <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/dailySteps_merged.csv", header = TRUE)
@@ -98,8 +98,85 @@ head(hourly_intensities)
 head(hourly_steps)
 head(weight)
 ```
-#### Check the structure of the data sets using str()
-I will check the summary of the selected data frames.
+#### daily_activity
+```
+         Id | ActivityDate| TotalSteps| TotalDistance| TrackerDistance| LoggedActivitiesDistance| VeryActiveDistance| ModeratelyActiveDistance| LightActiveDistance| SedentaryActiveDistance| VeryActiveMinutes| FairlyActiveMinutes| LightlyActiveMinutes| SedentaryMinutes| Calories|
+|----------:|:------------|----------:|-------------:|---------------:|------------------------:|------------------:|------------------------:|-------------------:|-----------------------:|-----------------:|-------------------:|--------------------:|----------------:|--------:|
+| 1503960366|4/12/2016    |      13162|          8.50|            8.50|                        0|               1.88|                     0.55|                6.06|                       0|                25|                  13|                  328|              728|     1985|
+| 1503960366|4/13/2016    |      10735|          6.97|            6.97|                        0|               1.57|                     0.69|                4.71|                       0|                21|                  19|                  217|              776|     1797|
+| 1503960366|4/14/2016    |      10460|          6.74|            6.74|                        0|               2.44|                     0.40|                3.91|                       0|                30|                  11|                  181|             1218|     1776|
+| 1503960366|4/15/2016    |       9762|          6.28|            6.28|                        0|               2.14|                     1.26|                2.83|                       0|                29|                  34|                  209|              726|     1745|
+| 1503960366|4/16/2016    |      12669|          8.16|            8.16|                        0|               2.71|                     0.41|                5.04|                       0|                36|                  10|                  221|              773|     1863|
+| 1503960366|4/17/2016    |       9705|          6.48|            6.48|                        0|               3.19|                     0.78|                2.51|                       0|                38|                  20|                  164|              539|     1728|
+```
+#### daily_sleep
+```
+|         Id|SleepDay              | TotalSleepRecords| TotalMinutesAsleep| TotalTimeInBed|
+|----------:|:---------------------|-----------------:|------------------:|--------------:|
+| 1503960366|4/12/2016 12:00:00 AM |                 1|                327|            346|
+| 1503960366|4/13/2016 12:00:00 AM |                 2|                384|            407|
+| 1503960366|4/15/2016 12:00:00 AM |                 1|                412|            442|
+| 1503960366|4/16/2016 12:00:00 AM |                 2|                340|            367|
+| 1503960366|4/17/2016 12:00:00 AM |                 1|                700|            712|
+| 1503960366|4/19/2016 12:00:00 AM |                 1|                304|            320|
+```
+#### daily_steps
+```
+|         Id|ActivityDay | StepTotal|
+|----------:|:-----------|---------:|
+| 1503960366|4/12/2016   |     13162|
+| 1503960366|4/13/2016   |     10735|
+| 1503960366|4/14/2016   |     10460|
+| 1503960366|4/15/2016   |      9762|
+| 1503960366|4/16/2016   |     12669|
+| 1503960366|4/17/2016   |      9705|
+```
+#### hourly_calories
+```
+|         Id|ActivityHour          | Calories|
+|----------:|:---------------------|--------:|
+| 1503960366|4/12/2016 12:00:00 AM |       81|
+| 1503960366|4/12/2016 1:00:00 AM  |       61|
+| 1503960366|4/12/2016 2:00:00 AM  |       59|
+| 1503960366|4/12/2016 3:00:00 AM  |       47|
+| 1503960366|4/12/2016 4:00:00 AM  |       48|
+| 1503960366|4/12/2016 5:00:00 AM  |       48|
+```
+#### hourly_intensities
+```
+|         Id|ActivityHour          | TotalIntensity| AverageIntensity|
+|----------:|:---------------------|--------------:|----------------:|
+| 1503960366|4/12/2016 12:00:00 AM |             20|         0.333333|
+| 1503960366|4/12/2016 1:00:00 AM  |              8|         0.133333|
+| 1503960366|4/12/2016 2:00:00 AM  |              7|         0.116667|
+| 1503960366|4/12/2016 3:00:00 AM  |              0|         0.000000|
+| 1503960366|4/12/2016 4:00:00 AM  |              0|         0.000000|
+| 1503960366|4/12/2016 5:00:00 AM  |              0|         0.000000|
+```
+#### hourly_steps
+```
+|         Id|ActivityHour          | StepTotal|
+|----------:|:---------------------|---------:|
+| 1503960366|4/12/2016 12:00:00 AM |       373|
+| 1503960366|4/12/2016 1:00:00 AM  |       160|
+| 1503960366|4/12/2016 2:00:00 AM  |       151|
+| 1503960366|4/12/2016 3:00:00 AM  |         0|
+| 1503960366|4/12/2016 4:00:00 AM  |         0|
+| 1503960366|4/12/2016 5:00:00 AM  |         0|
+```
+#### weight
+```
+|         Id|Date                  | WeightKg| WeightPounds| Fat|   BMI|IsManualReport |        LogId|
+|----------:|:---------------------|--------:|------------:|---:|-----:|:--------------|------------:|
+| 1503960366|5/2/2016 11:59:59 PM  |     52.6|     115.9631|  22| 22.65|TRUE           | 1.462234e+12|
+| 1503960366|5/3/2016 11:59:59 PM  |     52.6|     115.9631|  NA| 22.65|TRUE           | 1.462320e+12|
+| 1927972279|4/13/2016 1:08:52 AM  |    133.5|     294.3171|  NA| 47.54|FALSE          | 1.460510e+12|
+| 2873212765|4/21/2016 11:59:59 PM |     56.7|     125.0021|  NA| 21.45|TRUE           | 1.461283e+12|
+| 2873212765|5/12/2016 11:59:59 PM |     57.3|     126.3249|  NA| 21.69|TRUE           | 1.463098e+12|
+| 4319703577|4/17/2016 11:59:59 PM |     72.4|     159.6147|  25| 27.45|TRUE           | 1.460938e+12|
+```
+
+#### Checking the structure of the data sets using str()
 ```
 str(daily_activity)
 str(daily_sleep)
@@ -110,10 +187,10 @@ str(hourly_steps)
 str(weight)
 ```
 #### Cleaning and formating
-Now that I know more about the structure of the data. I will check for inconsistencies and errors.
+After reviewing the structure of the data, the next step is to look for potential inconsistencies or mistakes.
 
-#### Check the number of participants for each data set
-I will make sure to check the number of unique users per data frame before coming on with the cleaning process.
+#### Verifying the number of participants in each dataset
+I will ensure the number of unique users is verified in each data frame before proceeding with the cleaning process.
 ```
 n_unique(daily_activity$Id)
 n_unique(daily_sleep$Id)
@@ -123,10 +200,10 @@ n_unique(hourly_intensities$Id)
 n_unique(hourly_steps$Id)
 n_unique(weight$Id)
 ```
-All data sets have 33 participants each except the daily_sleep and weight data set which has 24 and 8 participants respectively.
-I will drop the weight data set because 8 participants is too small a sample to draw conclusions and make recommendations.
-#### Check for duplicates
-I will check for any duplicates in the data
+All datasets contain 33 participants each, except for daily_sleep and weight, which have 24 and 8 participants respectively. Due to the limited sample size, I will exclude the weight dataset from the analysis, as it is insufficient for drawing meaningful conclusions or making reliable recommendations.
+
+#### Checking for duplicates
+I will check each dataset for duplicate records to ensure data integrity before proceeding.
 ```
 sum(duplicated(daily_activity))
 sum(duplicated(daily_sleep))
@@ -135,11 +212,11 @@ sum(duplicated(hourly_calories))
 sum(duplicated(hourly_intensities))
 sum(duplicated(hourly_steps))
 ```
-#### Remove all duplicates and missing values
-I will remove all duplicates and missing values from my data.
+#### Removing all duplicates and missing values
+To prepare the data for analysis, I will eliminate duplicates and address any missing values.
 ```
 daily_activity <- daily_activity %>%
-  distinct() %>%
+distinct() %>%
   drop_na()
 daily_sleep <- daily_sleep %>%
   distinct() %>%
@@ -157,12 +234,18 @@ hourly_steps <- hourly_steps %>%
   distinct() %>%
   drop_na()
 ```
-I will verify that duplicates has been removed.
+I will ensure that duplicate records have been eliminated.
 ```
+sum(duplicated(daily_activity))
 sum(duplicated(daily_sleep))
+sum(duplicated(daily_steps))
+sum(duplicated(hourly_calories))
+sum(duplicated(hourly_intensities))
+sum(duplicated(hourly_steps))
 ```
-#### Clean and rename columns
-I will ensure that column names are in the right syntax and same format in all datasets since datasets will be merged later on.I will are change all columns to lower case format.
+
+#### Cleaning and renaming columns
+I will ensure that column names follow a consistent syntax and format across all datasets, as they will be merged later. All column names will be converted to lowercase for uniformity.
 ```
 clean_names(daily_activity)
 daily_activity <- rename_with(daily_activity, tolower)
@@ -177,7 +260,7 @@ hourly_intensities <- rename_with(hourly_intensities, tolower)
 clean_names(hourly_steps)
 hourly_steps <- rename_with(hourly_steps, tolower)
 ```
-I will check the data again to verify that changes has been effected.
+Checking the data again to verify that the changes have been applied successfully.
 ```
 head(daily_activity)
 head(daily_sleep)
@@ -185,6 +268,72 @@ head(daily_steps)
 head(hourly_calories)
 head(hourly_intensities)
 head(hourly_steps)
+```
+#### daily_activity
+```
+|         id|activitydate | totalsteps| totaldistance| trackerdistance| loggedactivitiesdistance| veryactivedistance| moderatelyactivedistance| lightactivedistance| sedentaryactivedistance| veryactiveminutes| fairlyactiveminutes| lightlyactiveminutes| sedentaryminutes| calories|
+|----------:|:------------|----------:|-------------:|---------------:|------------------------:|------------------:|------------------------:|-------------------:|-----------------------:|-----------------:|-------------------:|--------------------:|----------------:|--------:|
+| 1503960366|4/12/2016    |      13162|          8.50|            8.50|                        0|               1.88|                     0.55|                6.06|                       0|                25|                  13|                  328|              728|     1985|
+| 1503960366|4/13/2016    |      10735|          6.97|            6.97|                        0|               1.57|                     0.69|                4.71|                       0|                21|                  19|                  217|              776|     1797|
+| 1503960366|4/14/2016    |      10460|          6.74|            6.74|                        0|               2.44|                     0.40|                3.91|                       0|                30|                  11|                  181|             1218|     1776|
+| 1503960366|4/15/2016    |       9762|          6.28|            6.28|                        0|               2.14|                     1.26|                2.83|                       0|                29|                  34|                  209|              726|     1745|
+| 1503960366|4/16/2016    |      12669|          8.16|            8.16|                        0|               2.71|                     0.41|                5.04|                       0|                36|                  10|                  221|              773|     1863|
+| 1503960366|4/17/2016    |       9705|          6.48|            6.48|                        0|               3.19|                     0.78|                2.51|                       0|                38|                  20|                  164|              539|     1728|
+```
+#### daily_sleep
+```
+|         id|sleepday              | totalsleeprecords| totalminutesasleep| totaltimeinbed|
+|----------:|:---------------------|-----------------:|------------------:|--------------:|
+| 1503960366|4/12/2016 12:00:00 AM |                 1|                327|            346|
+| 1503960366|4/13/2016 12:00:00 AM |                 2|                384|            407|
+| 1503960366|4/15/2016 12:00:00 AM |                 1|                412|            442|
+| 1503960366|4/16/2016 12:00:00 AM |                 2|                340|            367|
+| 1503960366|4/17/2016 12:00:00 AM |                 1|                700|            712|
+| 1503960366|4/19/2016 12:00:00 AM |                 1|                304|            320|
+```
+#### daily_steps
+```
+|         id|activityday | steptotal|
+|----------:|:-----------|---------:|
+| 1503960366|4/12/2016   |     13162|
+| 1503960366|4/13/2016   |     10735|
+| 1503960366|4/14/2016   |     10460|
+| 1503960366|4/15/2016   |      9762|
+| 1503960366|4/16/2016   |     12669|
+| 1503960366|4/17/2016   |      9705|
+```
+#### hourly_calories
+```
+|         id|activityhour          | calories|
+|----------:|:---------------------|--------:|
+| 1503960366|4/12/2016 12:00:00 AM |       81|
+| 1503960366|4/12/2016 1:00:00 AM  |       61|
+| 1503960366|4/12/2016 2:00:00 AM  |       59|
+| 1503960366|4/12/2016 3:00:00 AM  |       47|
+| 1503960366|4/12/2016 4:00:00 AM  |       48|
+| 1503960366|4/12/2016 5:00:00 AM  |       48|
+```
+#### hourly_intensities
+```
+|         id|activityhour          | totalintensity| averageintensity|
+|----------:|:---------------------|--------------:|----------------:|
+| 1503960366|4/12/2016 12:00:00 AM |             20|         0.333333|
+| 1503960366|4/12/2016 1:00:00 AM  |              8|         0.133333|
+| 1503960366|4/12/2016 2:00:00 AM  |              7|         0.116667|
+| 1503960366|4/12/2016 3:00:00 AM  |              0|         0.000000|
+| 1503960366|4/12/2016 4:00:00 AM  |              0|         0.000000|
+| 1503960366|4/12/2016 5:00:00 AM  |              0|         0.000000|
+```
+#### hourly_steps
+```
+|         id|activityhour          | steptotal|
+|----------:|:---------------------|---------:|
+| 1503960366|4/12/2016 12:00:00 AM |       373|
+| 1503960366|4/12/2016 1:00:00 AM  |       160|
+| 1503960366|4/12/2016 2:00:00 AM  |       151|
+| 1503960366|4/12/2016 3:00:00 AM  |         0|
+| 1503960366|4/12/2016 4:00:00 AM  |         0|
+| 1503960366|4/12/2016 5:00:00 AM  |         0|
 ```
 #### Make date and time columns consistent
 I will clean date-time format for daily_activity and daily_sleep since I will merge both data frames.Note that we can disregard the time on daily_sleep data frame we are using as_date instead as as_datetime.
